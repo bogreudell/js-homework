@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Prototype</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<style>
+			#canvas { margin:-8px;}
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas" width="1366" height="800"></canvas>
+		<script>
+			var canvas = document.getElementById('canvas'),
+				ctx = canvas.getContext('2d')
+
+
+			/* ==================================== 
+				expanding square
+			   ==================================== */
+
+            function Square (x, y, width, height, color) {
+
+                this.x = x
+                this.y = y
+                this.width = width
+                this.height = height
+                this.color = color
+
+            }
+            
+            Square.prototype.update = function () {
+                this.width += 10
+                this.height += 10
+            }
+
+            Square.prototype.draw = function () {
+                ctx.fillStyle = this.color
+                ctx.fillRect(this.x, this.y, this.width, this.height, this.color)
+            }
+
+            var square = new Square(0, 0, 10, 10, '#ff6666')
+            
+            animate()
+
+            function animate () {
+
+                requestAnimationFrame(animate)
+                
+                ctx.clearRect(0, 0, 1366, 800)
+
+                square.update()
+                square.draw()
+
+            } 
+			
+			/* ==================================== 
+				descending square
+			   ==================================== */
+
+			/*
+            function Square (x, y, width, height, color) {
+
+                // this part now only deals with properties
+                // that can be different on each created object
+                this.x = x
+                this.y = y
+                this.width = width
+                this.height = height
+                this.color = color
+
+            }
+            
+            Square.prototype.update = function () {
+                this.x += 1
+                this.y += 1
+            }
+
+            Square.prototype.draw = function () {
+                ctx.fillStyle = this.color
+                ctx.fillRect(this.x, this.y, this.width, this.height, this.color)
+            }
+
+            var square = new Square(0, 0, 10, 10, '#ff6666')
+            
+            animate()
+
+            function animate () {
+
+                requestAnimationFrame(animate)
+
+                ctx.clearRect(0, 0, 1366, 800)
+
+                square.update()
+                square.draw()
+
+            } */
+		</script>
+	</body>
+</html>

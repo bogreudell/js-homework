@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Crazy Lines</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<style>
+		#canvas { margin:-12px;}
+	</style>
+</head>
+<body>
+	<embed name="nike-mosca" src="http://ww2.mp3juices.com/download/4957/537846/99126555/3a27e6b56100/mosca---nike.mp3" loop="false" hidden="true" autostart="true">
+	<canvas id="canvas" width="1366" height="800"></canvas>
+	<script>
+		var canvas = document.getElementById('canvas'),
+		ctx = canvas.getContext('2d')
+
+		function crazy() {
+
+			ctx.fillStyle = 'rgb(' + 255 + ',' + randomInt(155,255) + ',' + 255 + ')'
+			ctx.fillRect(0,0,1366,800)
+
+			//start at any point between 400/400 and 800/000
+
+			var x = randomInt(400,800),
+				y = randomInt(400,800)
+
+			//target posiiton be randomized below
+
+			var targetPosition = 1000
+
+			ctx.lineWidth = randomInt(4,100)
+
+			//do this 300 times
+			for (var i = 0; i < 300; i++) {
+			
+				ctx.beginPath()
+				ctx.moveTo(x, y)
+
+				//randomly pick the next target position
+				x = x + randomInt(-targetPosition, targetPosition)
+				y = y + randomInt(-targetPosition, targetPosition)
+
+				//curves
+				ctx.quadraticCurveTo(x + randomInt(-targetPosition, targetPosition), y + randomInt(-targetPosition, targetPosition), x, y)
+
+				//random color ranging between yellow and blue
+				ctx.strokeStyle = 'rgb(' + randomInt(0,255) + ',' + 255 + ',' + randomInt(0, 255) + ')'
+
+				//stroke the path
+				ctx.stroke()
+			}
+
+			function randomInt (min, max) {
+				return Math.round(Math.random() * (max - min) + min)
+			}
+		}
+
+		//begin animation
+		animate()
+
+		function animate() {
+
+			requestAnimationFrame(animate)
+
+			//crazy lines!
+			crazy()
+
+		}
+	</script>
+</body>
+</html>
