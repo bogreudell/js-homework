@@ -4,11 +4,11 @@
 	<title>Crazy Lines</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<style>
-		#canvas { margin:-8px;}
+		#canvas { margin:-12px;}
 	</style>
 </head>
 <body>
-	<canvas id="canvas" width="1366" height="800"></canvas>
+	<canvas id="canvas" width="1500" height="800"></canvas>
 	<script>
 		var canvas = document.getElementById('canvas'),
 		ctx = canvas.getContext('2d')
@@ -16,7 +16,7 @@
 		function crazy() {
 
 			ctx.fillStyle = 'rgb(' + 255 + ',' + randomInt(155,255) + ',' + 255 + ')'
-			ctx.fillRect(0,0,1366,800)
+			ctx.fillRect(0,0,1500,800)
 
 			//start at any point between 400/400 and 800/000
 
