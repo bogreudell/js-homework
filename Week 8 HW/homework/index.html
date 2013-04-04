@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+<head>
+	<title>Language API</title>
+	<meta charset="utf-8">
+	<style>
+		body { 
+			margin:0px auto;
+			width:1024px;
+			text-align:center;
+			background:#f0f0f0;
+			color:#333;
+			font-family:arial,sans-serif;
+		}
+		body h1 {
+			//text-align:center;
+			text-shadow:.03em .03em .03em #888;
+		}
+		body ul li {
+			margin:0px;
+			list-style-type:none;
+		}
+		body ul li h3 {
+			display:inline;
+		}
+		body button {
+			padding:10px;
+			background:#f7f7f7;
+			border:none;
+			-webkit-border-radius:5px;
+			-moz-border-radius:5px;
+			-webkit-box-shadow:0px 0px 1px #888;
+			-moz-box-shadow:0px 0px 1px #888;			
+			-webkit-transition:background .1s ease-in-out;
+			-moz-transition:background .1s ease-in-out;
+		}
+		body button:hover {
+			background:#888;
+		} 
+	</style>
+</head>
+<body>
+	<div id="content-wrapper">
+		<h1>Languages of Spain</h1>
+		<div id="language-selector">
+			<button id="aragonese">aragonese</button>
+			<button id="aranese">aranese</button>
+			<button id="asturian">asturian</button>
+			<button id="basque">basque</button>
+			<button id="catalan">catalan</button>
+			<button id="extremaduran">extremaduran</button>
+			<button id="galician">galician</button>
+			<button id="spanish">spanish</button>
+		</div>
+		<ul>
+			<li>
+				<span><h3>{{name}}</h3></span>
+				<span> - </span>
+				<span><h3>{{nativeName}}</h3></span>
+			</li>
+			<li>{{status}}</li>
+			<li>{{distribution}}</li>
+		</ul>
+	</div>
+<script src="jquery.js"></script>
+<script>
+	$(document).ready(function(){
+
+		$('#aragonese').on('click', function(){
+			console.log('clicked');
+		});
+
+	});
+</script>
+</body>
+</html>
