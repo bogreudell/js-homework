@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>The Awesome People API</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <style type="text/css">
+        </style>
+    </head>
+    <body>
+
+        <form id="names-form">
+
+            <label for="aragonese">
+                <input type="checkbox" name="aragonese" id="aragonese">
+                <span>Aragonese</span>
+            </label>
+            <br>
+            <label for="aranese">
+                <input type="checkbox" name="aranese" id="aranese">
+                <span>Aranese</span>
+            </label>
+            <br>
+            <label for="asturian">
+                <input type="checkbox" name="asturian" id="asturian">
+                <span>Asturian</span>
+            </label>
+            <br>
+            <label for="basque">
+                <input type="checkbox" name="basque" id="basque">
+                <span>Basque</span>
+            </label>
+            <br>
+            <label for="catalan">
+                <input type="checkbox" name="catalan" id="catalan">
+                <span>Catalan</span>
+            </label>
+            <br>
+            <label for="extremaduran">
+                <input type="checkbox" name="extremaduran" id="extremaduran">
+                <span>Extremaduran</span>
+            </label>
+            <br>
+            <label for="nationwide">
+                <input type="checkbox" name="nationwide" id="nationwide">
+                <span>Spanish</span>
+            </label>
+
+        </form>
+
+        <form id="regions-form">
+
+            <label for="aragon">
+                <input type="checkbox" name="aragon" id="aragon">
+                <span>Aragon</span>
+            </label>
+            <br>
+            <label for="asturias">
+                <input type="checkbox" name="asturias" id="asturias">
+                <span>Asturias</span>
+            </label>
+            <br>
+            <label for="balearic-islands">
+                <input type="checkbox" name="balearicIslands" id="balearic-islands">
+                <span>Balearic Islands</span>
+            </label>
+            <br>
+            <label for="euskadi">
+                <input type="checkbox" name="euskadi" id="euskadi">
+                <span>Basque Country / Euskadi</span>
+            </label>
+            <br>
+            <label for="catalonia">
+                <input type="checkbox" name="catalonia" id="catalonia">
+                <span>Catalonia</span>
+            </label>
+            <br>
+            <label for="extremadura">
+                <input type="checkbox" name="extremadura" id="extremadura">
+                <span>Extremadura</span>
+            </label>
+            <br>
+            <label for="valencia">
+                <input type="checkbox" name="valencia" id="valencia">
+                <span>Valencia</span>
+            </label>
+            <br>
+            <label for="nationwide">
+                <input type="checkbox" name="nationwide" id="nationwide">
+                <span>Spanish</span>
+            </label>
+
+        </form>
+
+        <br>
+
+        <button id="update">update</button>
+
+        <div id="better-display"></div>
+
+        <script>
+
+            $('#update').on('click', function () {
+
+                // jQuery's serialize() method
+                // converts the input fields in a <form>
+                // into a query string that you can use in URLs
+                var query = $('#form').serialize()
+
+                // Note the `&callback=?` here!
+                // it signals to jQuery and the server
+                // that we want to use JSONP to get around same-origin policy
+                $.getJSON('http://localhost:8080/people?' + query + '&callback=?', function (data) {
+
+                    var display = $('#better-display')
+
+                    // clean previous stuff
+                    display.empty()
+
+                    // loop through the returned data
+                    data.forEach(function (person) {
+                        // create an element for each returned person
+                        // then append to display
+                        var personElement = $('<div class="names">' + person.name + '</div>')
+                        display.append(personElement)
+
+                    })
+                })
+            })
+
+        </script>
+    </body>
+</html>

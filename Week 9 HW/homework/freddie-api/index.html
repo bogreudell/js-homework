@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Freddie's For Action API</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>-->
+        <script src="jquery.js"></script>
+        <!--<script src="json2.js"></script>-->
+        <style type="text/css"></style>
+    </head>
+    <body>
+
+        <div id="display"></div>
+
+        <script>
+
+        	$(document).ready(function(){
+                $.getJSON('http://localhost:8080/api?' + 'callback=?', function (data) {
+                        //console.log(data)
+                        data = JSON.stringify(data);
+                        display = $('#display');
+
+                       display.html(data);
+                    });
+        	});
+
+            function hi () {}
+
+        </script>
+    </body>
+</html>

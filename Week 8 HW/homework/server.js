@@ -58,16 +58,16 @@ var server = http.createServer(function (request, response) {
 		
 		fs.readFile('index.html', 'utf-8', function (err, file) {
 
-			/*var name = languages[0].name,
+			var name = languages[0].name,
 				nativeName = languages[0].nativeName,
 				status = languages[0].status,
-				distribution = languages[0].distribution*/
+				distribution = languages[0].distribution
 
 		    file = file
-		    			/*.replace('{{name}}', name)
+		    			.replace('{{name}}', name)
 		    			.replace('{{nativeName}}', nativeName)
 		    			.replace('{{status}}', status)
-		    			.replace('{{distribution}}', distribution)*/
+		    			.replace('{{distribution}}', distribution)
 
 		    response.end(file) 
 
