@@ -1,8 +1,11 @@
+// problem area: navigation
+// navigating previous/next by clicking arrows starts on LINE 70
+// navigating previous/next by tapping left/right arrow keys starts on LINE 103
+
 $(document).ready(function(){
-         // global variables for script
   var current, size;
   
-  $('.lightboxTrigger').click(function(e) {
+  $('.trigger').click(function(e) {
     
     // prevent default click event
     e.preventDefault();
@@ -11,7 +14,7 @@ $(document).ready(function(){
     var image_href = $(this).attr("href");  
     
     // determine the index of clicked trigger
-    var slideNum = $('.lightboxTrigger').index(this);
+    var slideNum = $('.trigger').index(this);
     
     // find out if #lightbox exists
     if ($('#lightbox').length > 0) {        
@@ -23,15 +26,12 @@ $(document).ready(function(){
       var lightbox =
           '<div id="lightbox">' +
           '<div class="nav">' +
-          '<a href="#prev" class="prev slide-nav"><img src="images/content/prev.png"></a>' +
+          '<a href="#prev" class="prev slide-nav">&leftarrow;</a>' +
           '<span>&nbsp;&nbsp;&nbsp;</span>' +
-          '<a href="#next" class="next slide-nav"><img src="images/content/next.png"></a>' +
+          '<a href="#next" class="next slide-nav">&rightarrow;</a>' +
           '</div>' + 
           '<div id="slideshow">' +
           '<ul></ul>' +
-          '<div id="caption">' +
-          'This is an image caption, telling the story of this image.' +
-          '</div>'
           '</div>' +      
           '</div>' +
           '</div>';
@@ -40,7 +40,7 @@ $(document).ready(function(){
       $('body').append(lightbox);
       
       // fill lightbox with .lightboxTrigger hrefs in #imageSet
-      $('#thumbnails').find('.lightboxTrigger').each(function() {
+      $('.trigger').each(function() {
         var $href = $(this).attr('href');
         $('#slideshow ul').append(
           '<li>' +
@@ -66,16 +66,7 @@ $(document).ready(function(){
   $('body').on('click', '#lightbox', function() { 
     $('#lightbox').fadeOut(300);
   });
-  
-  // show/hide navigation when hovering over #slideshow
-  /*$('body').on(
-    { mouseenter: function() {
-      $('.nav').fadeIn(300);
-    }, mouseleave: function() {
-      $('.nav').fadeOut(300);
-    }
-    },'#slideshow');*/
-  
+
   // navigation prev/next
   $('body').on('click', '.slide-nav', function(e) {
     
@@ -106,13 +97,14 @@ $(document).ready(function(){
     
     // update current slide
     current = dest;
+
   });
 
+  //key commands
   $('body').keydown(function(e){
-    //var $this = $(this);
     var dest;
 
-    //key commands
+    // left arrow
     if ((e.keyCode || e.which) == 37) {   
       dest = current - 1;
       if (dest < 0) {
@@ -127,9 +119,9 @@ $(document).ready(function(){
       }
     }  
 
+    //esc key closes lightbox
     if ((e.keyCode || e.which) == 27)
     {
-        // do something
         $('#lightbox').fadeOut(300);
     }  
 
